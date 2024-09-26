@@ -1,47 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>25-Minute Countdown</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
+<script>
+    var countdownTime = 25 * 60; // Tempo de contagem regressiva em segundos (25 minutos)
+
+    var countdownElement = document.getElementById("countdown");
+
+    function updateCountdown() {
+        var minutes = Math.floor(countdownTime / 60);
+        var seconds = countdownTime % 60;
+
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        countdownElement.innerHTML = minutes + ":" + seconds;
+
+        if (countdownTime > 0) {
+            countdownTime--;
+        } else {
+            countdownElement.innerHTML = "Time's up!";
         }
-        h1 {
-            font-size: 5em;
-            color: #333;
-        }
-    </style>
-</head>
-<body>
-    <h1 id="countdown"></h1>
+    }
 
-    <script>
-        var countdownTime = 25 * 60;
-        var countdownElement = document.getElementById("countdown");
-
-        function updateCountdown() {
-            var minutes = Math.floor(countdownTime / 60);
-            var seconds = countdownTime % 60;
-
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-
-            countdownElement.innerHTML = minutes + ":" + seconds;
-
-            if (countdownTime > 0) {
-                countdownTime--;
-            } else {
-                countdownElement.innerHTML = "Time's up!";
-            }
-        }
-
-        setInterval(updateCountdown, 1000);
-    </script>
-</body>
-</html>
+    setInterval(updateCountdown, 1000);
+</script>
